@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatApp.Interface;
+﻿using ChatApp.Interface;
 
 namespace ChatApp.Model
 {
@@ -21,7 +16,7 @@ namespace ChatApp.Model
             subscribers.Add(subscriber);
         }
 
-        public void SendMessageToSubscribers(string message)
+        public void SendMessageToSubscribers(IMessage message)
         {
             foreach (IUser subscriber in subscribers) {
                 subscriber.ReceiveMessageFromChat(message);

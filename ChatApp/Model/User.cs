@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatApp.Interface;
+﻿using ChatApp.Interface;
 
 namespace ChatApp.Model
 {
     internal class User : IUser
     {
-        //private List<IChat> userChats;
+        private readonly string name;
 
-        public void SendMessageToChat(IChat chat, string message)
+        public User(string name)
         {
-            throw new NotImplementedException();
+            this.name = name;
+        }
+
+        public void SendMessageToChat(IChat chat, IMessage message)
+        {
+            chat.SendMessageToSubscribers(message);
         }
 
         public void SubscribeToChat(IChat chat)
@@ -21,9 +21,9 @@ namespace ChatApp.Model
             chat.AddSubscriber(this);
         }
 
-        public void ReceiveMessageFromChat(string message)
+        public void ReceiveMessageFromChat(IMessage message)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"User with name \"{name}\" received message: \"{message.GetMessageString()}\".");
         }
     }
 }
